@@ -1,23 +1,31 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 const links = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', to: '/about' },
+  { label: 'Projects', to: '/projects' },
+  { label: 'Experience', to: '/experience' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   useEffect(() => {
+    if (!isHomePage) {
+      setScrolled(true)
+      return
+    }
     const onScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', onScroll)
+    setScrolled(window.scrollY > 50)
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [isHomePage])
 
   return (
     <nav
@@ -26,33 +34,37 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#hero"
+        <Link
+          to="/"
           className="font-mono font-bold text-xl gradient-text tracking-tight"
         >
           TN.
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.label}>
-              <a
-                href={l.href}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium relative group"
+              <NavLink
+                to={l.to}
+                className={({ isActive }) =>
+                  `text-sm font-medium relative group transition-colors duration-200 ${
+                    isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                  }`
+                }
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-400 group-hover:w-full transition-all duration-300" />
-              </a>
+              </NavLink>
             </li>
           ))}
           <li>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-purple-600 to-cyan-500 hover:opacity-90 transition-opacity"
             >
               Hire Me
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -78,23 +90,27 @@ export default function Navbar() {
             <ul className="flex flex-col gap-4">
               {links.map((l) => (
                 <li key={l.label}>
-                  <a
-                    href={l.href}
+                  <NavLink
+                    to={l.to}
                     onClick={() => setOpen(false)}
-                    className="text-gray-300 hover:text-white text-sm font-medium block"
+                    className={({ isActive }) =>
+                      `text-sm font-medium block ${
+                        isActive ? 'text-white' : 'text-gray-300 hover:text-white'
+                      }`
+                    }
                   >
                     {l.label}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   onClick={() => setOpen(false)}
                   className="block text-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-purple-600 to-cyan-500"
                 >
                   Hire Me
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

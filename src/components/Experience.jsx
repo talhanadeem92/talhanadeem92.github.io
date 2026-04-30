@@ -49,7 +49,7 @@ export default function Experience() {
   const eduInView = useInView(eduRef, { once: true, margin: '-100px' })
 
   return (
-    <section id="experience" className="relative py-28 px-6">
+    <section className="relative py-28 px-6">
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-700 rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto">

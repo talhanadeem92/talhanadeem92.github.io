@@ -66,7 +66,7 @@ export default function Projects() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="projects" className="relative py-28 px-6">
+    <section className="relative py-28 px-6">
       {/* Background blob */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600 rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none" />
 

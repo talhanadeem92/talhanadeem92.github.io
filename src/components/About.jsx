@@ -38,7 +38,7 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="about" className="relative py-28 px-6 max-w-6xl mx-auto">
+    <section className="relative py-28 px-6 max-w-6xl mx-auto">
       <SectionTitle title="About Me" subtitle="Who I Am" />
 
       <div ref={ref} className="grid md:grid-cols-2 gap-12 items-start">

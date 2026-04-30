@@ -15,8 +15,8 @@ const socials = [
   {
     icon: <FiLinkedin size={20} />,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/talha-nadeem',
-    href: 'https://www.linkedin.com/in/talha-nadeem/',
+    value: 'linkedin.com/in/talha-nadeem-136159268',
+    href: 'https://www.linkedin.com/in/talha-nadeem-136159268/',
     color: 'group-hover:text-blue-400',
   },
   {
@@ -61,7 +61,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-28 px-6">
+    <section className="relative py-28 px-6">
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-pink-600 rounded-full mix-blend-screen filter blur-3xl opacity-10 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto">

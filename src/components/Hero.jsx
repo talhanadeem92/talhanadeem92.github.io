@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const roles = ['AI / ML Engineer', 'Data Engineer', 'Python Bot Developer', 'Web Scraping Expert', 'NLP & LLM Specialist', 'RAG Pipeline Builder']
 
@@ -28,7 +29,6 @@ export default function Hero() {
 
   return (
     <section
-      id="hero"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
     >
       {/* Animated gradient blobs */}
@@ -81,25 +81,25 @@ export default function Hero() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-          <a
-            href="#projects"
+          <Link
+            to="/projects"
             className="px-6 py-3 rounded-full font-semibold text-sm bg-gradient-to-r from-purple-600 to-cyan-500 hover:scale-105 transition-transform shadow-lg shadow-purple-500/25"
           >
             View Projects
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            to="/contact"
             className="px-6 py-3 rounded-full font-semibold text-sm glass-card gradient-border hover:scale-105 transition-transform"
           >
             Contact Me
-          </a>
+          </Link>
         </div>
 
         {/* Social icons */}
         <div className="flex items-center justify-center gap-5">
           {[
             { icon: <FiGithub size={20} />, href: 'https://github.com/talhanadeem92', label: 'GitHub' },
-            { icon: <FiLinkedin size={20} />, href: 'https://www.linkedin.com/in/talha-nadeem/', label: 'LinkedIn' },
+            { icon: <FiLinkedin size={20} />, href: 'https://www.linkedin.com/in/talha-nadeem-136159268/', label: 'LinkedIn' },
             { icon: <FiMail size={20} />, href: 'mailto:talhadogar1177@gmail.com', label: 'Email' },
           ].map(({ icon, href, label }) => (
             <a
@@ -116,17 +116,21 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.a
-        href="#about"
+      {/* Navigation indicator */}
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 text-gray-500 hover:text-purple-400 transition-colors animate-float"
-        aria-label="Scroll down"
+        className="absolute bottom-8"
       >
-        <FiArrowDown size={24} />
-      </motion.a>
+        <Link
+          to="/about"
+          className="text-gray-500 hover:text-purple-400 transition-colors animate-float block"
+          aria-label="Go to About"
+        >
+          <FiArrowDown size={24} />
+        </Link>
+      </motion.div>
     </section>
   )
 }
