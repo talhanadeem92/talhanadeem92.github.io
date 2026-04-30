@@ -68,10 +68,10 @@ export default function AnimatedBot() {
 
     // Mini bots
     const minis = [
-      { x: 0, y: 0, vx: 0.3, vy: -0.2, size: 14, phase: 0, c: { r: 6, g: 182, b: 212 } },
-      { x: 0, y: 0, vx: -0.4, vy: 0.1, size: 12, phase: 2, c: { r: 124, g: 58, b: 237 } },
-      { x: 0, y: 0, vx: 0.2, vy: 0.4, size: 16, phase: 4, c: { r: 236, g: 72, b: 153 } },
-      { x: 0, y: 0, vx: -0.1, vy: -0.3, size: 13, phase: 1, c: { r: 16, g: 185, b: 129 } },
+      { x: 0, y: 0, vx: 0.3, vy: -0.2, size: 20, phase: 0, c: { r: 6, g: 182, b: 212 } },
+      { x: 0, y: 0, vx: -0.4, vy: 0.1, size: 18, phase: 2, c: { r: 124, g: 58, b: 237 } },
+      { x: 0, y: 0, vx: 0.2, vy: 0.4, size: 22, phase: 4, c: { r: 236, g: 72, b: 153 } },
+      { x: 0, y: 0, vx: -0.1, vy: -0.3, size: 19, phase: 1, c: { r: 16, g: 185, b: 129 } },
     ]
 
     const mouse = { x: -9999, y: -9999, active: false }
@@ -229,7 +229,7 @@ export default function AnimatedBot() {
       }
       bot.antennaAngle = Math.sin(time * 0.003) * 0.4 + nX * 0.3
 
-      const ALPHA = 0.5
+      const ALPHA = 0.85
 
       // ===== MINI BOTS =====
       for (const m of minis) {
@@ -245,25 +245,29 @@ export default function AnimatedBot() {
         if (m.y < -60) m.y = h + 60; if (m.y > h + 60) m.y = -60
         const mb = m.y + Math.sin(time * 0.002 + m.phase) * 6
         const { r, g, b } = m.c
-        ctx.save(); ctx.globalAlpha = 0.22
+        ctx.save(); ctx.globalAlpha = 0.45
         // Mini body
         rr(m.x - m.size, mb - m.size * 0.7, m.size * 2, m.size * 2.2, m.size * 0.35)
-        ctx.fillStyle = `rgba(${r},${g},${b}, 0.1)`; ctx.fill()
-        ctx.strokeStyle = `rgba(${r},${g},${b}, 0.25)`; ctx.lineWidth = 0.8; ctx.stroke()
+        ctx.fillStyle = `rgba(${r},${g},${b}, 0.2)`; ctx.fill()
+        ctx.strokeStyle = `rgba(${r},${g},${b}, 0.5)`; ctx.lineWidth = 1.2; ctx.stroke()
         // Mini eyes
         const eo = Math.sin(time * 0.001 + m.phase) * 2
         for (const s of [-1, 1]) {
           ctx.beginPath(); ctx.arc(m.x + s * m.size * 0.3 + eo, mb - m.size * 0.15, m.size * 0.16, 0, Math.PI * 2)
-          ctx.fillStyle = `rgba(${r},${g},${b}, 0.7)`; ctx.fill()
+          ctx.fillStyle = `rgba(${r},${g},${b}, 0.9)`; ctx.fill()
         }
         // Mini gear
-        drawGear(m.x, mb + m.size * 0.5, m.size * 0.4, m.size * 0.28, 6, time * 0.003 + m.phase, `${r},${g},${b}`, 0.3)
+        drawGear(m.x, mb + m.size * 0.5, m.size * 0.4, m.size * 0.28, 6, time * 0.003 + m.phase, `${r},${g},${b}`, 0.5)
         ctx.restore()
       }
 
       // ===== BIG ROBOT =====
       ctx.save()
       ctx.globalAlpha = ALPHA
+      // Scale up the robot — draw at 1.6x size
+      ctx.translate(bx, by)
+      ctx.scale(1.6, 1.6)
+      ctx.translate(-bx, -by)
 
       // ---- Hover thrusters / jets (feet) ----
       const feetY = by + 95

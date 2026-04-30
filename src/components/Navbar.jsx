@@ -4,6 +4,7 @@ import { NavLink, Link, useLocation } from 'react-router-dom'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 const links = [
+  { label: 'Home', to: '/' },
   { label: 'About', to: '/about' },
   { label: 'Projects', to: '/projects' },
   { label: 'Experience', to: '/experience' },
@@ -47,6 +48,7 @@ export default function Navbar() {
             <li key={l.label}>
               <NavLink
                 to={l.to}
+                end={l.to === '/'}
                 className={({ isActive }) =>
                   `text-sm font-medium relative group transition-colors duration-200 ${
                     isActive ? 'text-white' : 'text-gray-300 hover:text-white'
@@ -92,6 +94,7 @@ export default function Navbar() {
                 <li key={l.label}>
                   <NavLink
                     to={l.to}
+                    end={l.to === '/'}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
                       `text-sm font-medium block ${
