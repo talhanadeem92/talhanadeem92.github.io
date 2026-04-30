@@ -78,8 +78,8 @@ export default function AnimatedBot() {
 
     function initPositions() {
       const w = canvas.width, h = canvas.height
-      bot.x = bot.targetX = w * 0.82
-      bot.y = bot.targetY = h * 0.55
+      bot.x = bot.targetX = w * 0.5
+      bot.y = bot.targetY = h * 0.5
       minis.forEach((m, i) => {
         m.x = w * (0.1 + i * 0.25) + Math.random() * 100
         m.y = h * (0.2 + Math.random() * 0.6)
@@ -195,8 +195,8 @@ export default function AnimatedBot() {
 
       // Lazy follow cursor
       if (mouse.active) {
-        bot.targetX += (mouse.x * 0.12 + w * 0.78 - bot.targetX) * 0.008
-        bot.targetY += (mouse.y * 0.15 + h * 0.5 - bot.targetY) * 0.008
+        bot.targetX += (mouse.x * 0.12 + w * 0.5 - bot.targetX) * 0.008
+        bot.targetY += (mouse.y * 0.15 + h * 0.45 - bot.targetY) * 0.008
       }
       bot.x += (bot.targetX - bot.x) * 0.02
       bot.y += (bot.targetY - bot.y) * 0.02
