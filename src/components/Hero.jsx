@@ -31,20 +31,7 @@ export default function Hero() {
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
     >
-      {/* Animated gradient blobs */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-purple-700 rounded-full mix-blend-screen filter blur-3xl opacity-30 animate-blob" />
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
-      <div className="absolute bottom-1/4 left-1/3 w-80 h-80 bg-pink-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-blob animation-delay-4000" />
 
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-        }}
-      />
 
       {/* Content */}
       <motion.div
@@ -57,7 +44,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-purple-400 font-mono text-sm tracking-widest uppercase mb-4"
+          className="text-cyan-400 font-mono text-sm tracking-widest uppercase mb-4"
         >
           Hello, I&apos;m
         </motion.p>
@@ -69,7 +56,7 @@ export default function Hero() {
         <div className="h-12 flex items-center justify-center mb-6">
           <span className="text-xl sm:text-2xl text-gray-300 font-medium">
             {displayed}
-            <span className="inline-block w-0.5 h-6 bg-purple-400 ml-1 animate-pulse" />
+            <span className="inline-block w-0.5 h-6 bg-cyan-400 ml-1 animate-pulse" />
           </span>
         </div>
 
@@ -125,7 +112,7 @@ export default function Hero() {
       >
         <Link
           to="/about"
-          className="text-gray-500 hover:text-purple-400 transition-colors animate-float block"
+          className="text-gray-500 hover:text-cyan-400 transition-colors animate-float block"
           aria-label="Go to About"
         >
           <FiArrowDown size={24} />

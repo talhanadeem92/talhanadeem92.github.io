@@ -56,24 +56,14 @@ export default function Experience() {
         <SectionTitle title="Experience" subtitle="Where I've Worked" />
 
         {/* Work timeline */}
-        <div ref={ref} className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-purple-600 via-cyan-500 to-pink-500 opacity-30" />
-
-          <div className="space-y-10 pl-16">
+        <div ref={ref} className="space-y-10">
             {experiences.map((exp, i) => (
               <motion.div
                 key={exp.company}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.2, duration: 0.6 }}
-                className="relative"
               >
-                {/* Dot */}
-                <div
-                  className={`absolute -left-[42px] top-2 w-4 h-4 rounded-full bg-gradient-to-br ${exp.color} shadow-lg`}
-                />
-
                 <div className="glass-card gradient-border p-6 space-y-4">
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
@@ -88,18 +78,16 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <ul className="space-y-2">
+                  <div className="space-y-2">
                     {exp.bullets.map((b) => (
-                      <li key={b} className="text-sm text-gray-400 flex gap-2">
-                        <span className="text-purple-400 mt-0.5 shrink-0">▸</span>
+                      <p key={b} className="text-sm text-gray-400">
                         {b}
-                      </li>
+                      </p>
                     ))}
-                  </ul>
+                  </div>
                 </div>
               </motion.div>
             ))}
-          </div>
         </div>
 
         {/* Education */}
@@ -123,14 +111,13 @@ export default function Experience() {
                 <p className="text-xs text-cyan-400 font-mono">CGPA: {education.cgpa}</p>
               </div>
             </div>
-            <ul className="space-y-2">
+            <div className="space-y-2">
               {education.highlights.map((h) => (
-                <li key={h} className="text-sm text-gray-400 flex gap-2">
-                  <span className="text-cyan-400 mt-0.5 shrink-0">▸</span>
+                <p key={h} className="text-sm text-gray-400">
                   {h}
-                </li>
+                </p>
               ))}
-            </ul>
+            </div>
           </motion.div>
         </div>
       </div>
